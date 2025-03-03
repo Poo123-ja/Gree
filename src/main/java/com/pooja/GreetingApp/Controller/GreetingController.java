@@ -6,6 +6,7 @@ import com.pooja.GreetingApp.custumExceptions.ResourceNotFoundException;
 import com.pooja.GreetingApp.model.GreetingModel;
 import com.pooja.GreetingApp.Repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import org.slf4j.Logger;
@@ -74,5 +75,15 @@ public class GreetingController {
     @PutMapping("/updateRepo/{id}")
     public GreetingModel updateGreetingRepo(@PathVariable Long id, @RequestBody GreetingModel greetingDetails){
         return greetingService.updateGreeting(id, greetingDetails.getMessage());
+    }
+    @DeleteMapping("/deleteFromRepo/{id}")
+    public ResponseEntity<String> deleteGreetingRepo(@PathVariable Long id){
+        try {
+            greetingService.deleteGreeting(id);
+            return ResponseEntity.ok("Greeting deleted successfully!");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 }
