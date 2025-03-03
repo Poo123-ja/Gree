@@ -71,4 +71,8 @@ public class GreetingController {
     public List<GreetingModel> getAllGreetings(){
         return greetingService.getAllGreetings();
     }
+    @PutMapping("/updateRepo/{id}")
+    public GreetingModel updateGreetingRepo(@PathVariable Long id, @RequestBody GreetingModel greetingDetails){
+        return greetingService.updateGreeting(id, greetingDetails.getMessage());
+    }
 }
