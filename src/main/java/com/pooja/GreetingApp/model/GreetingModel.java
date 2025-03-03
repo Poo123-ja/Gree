@@ -12,7 +12,9 @@ public class GreetingModel {
     private Long id;
     private String message;
 
-    public GreetingModel() {}
+    public GreetingModel(String message) {
+        this.message=message;
+    }
 
     public GreetingModel(Long id, String message) {
         this.id = id;
