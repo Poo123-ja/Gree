@@ -20,6 +20,8 @@ public class GreetingController {
     @Autowired
     private GreetingRepository greetingRepository;
 
+    @Autowired
+    private GreetingService greetingService;
     @GetMapping
     public List<GreetingModel> getGreetings(){
         return greetingRepository.findAll();
@@ -48,5 +50,11 @@ public class GreetingController {
     @GetMapping("/simple")
     public String getSimpleGreeting(){
         return simpleGreet.getSimpleGreeting();
+    }
+    @GetMapping("/message")
+    public String getGreetingMessage(@RequestParam(required = false) String firstName,
+                                     @RequestParam(required = false) String lastName){
+        return greetingService.getGreeting(firstName, lastName);
+
     }
 }
