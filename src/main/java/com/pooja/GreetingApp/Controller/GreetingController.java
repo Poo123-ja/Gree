@@ -1,6 +1,7 @@
 
 package com.pooja.GreetingApp.Controller;
 
+import com.pooja.GreetingApp.Services.GreetingService;
 import com.pooja.GreetingApp.custumExceptions.ResourceNotFoundException;
 import com.pooja.GreetingApp.model.GreetingModel;
 import com.pooja.GreetingApp.Repository.GreetingRepository;
@@ -41,5 +42,11 @@ public class GreetingController {
     @DeleteMapping("/{id}")
     public void deleteGreeting(@PathVariable Long id){
         greetingRepository.deleteById(id);
+    }
+    @Autowired
+    private GreetingService simpleGreet;
+    @GetMapping("/simple")
+    public String getSimpleGreeting(){
+        return simpleGreet.getSimpleGreeting();
     }
 }
