@@ -11,7 +11,9 @@ public class GreetingModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
+    public GreetingModel(){
 
+    }
     public GreetingModel(String message) {
         this.message=message;
     }
